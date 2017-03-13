@@ -1,5 +1,6 @@
 class ChatroomsController < ApplicationController
   # chatroom main page
   def home
-  end  
+    @message = Message.new
+  end
 end

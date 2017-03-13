@@ -1,2 +1,20 @@
-%h1 Chatrooms#home
-%p Find me in app/views/chatrooms/home.html.haml
+.col-md-9
+  %h1 #babblechat
+  .panel.panel-default#chat-box
+    .panel-body
+      messages here
+  .panel.panel-default#message-box
+    .panel-body
+      =simple_form_for @message, url: '#' do |f|
+        =f.error_notification errors: true
+        =f.input :content, as: :string, label: false, placeholder: 'Type your message here...'
+        =f.button :submit, 'Speak', class: 'btn-primary'
+
+.col-md-3
+  %h1
+    online now
+    &nbsp;
+    = link_to destroy_user_session_path, method: :delete, class: 'btn btn-default' do
+      %span.glyphicon.glyphicon-log-out
+  .panel.panel-default#message-box
+    .panel-body
