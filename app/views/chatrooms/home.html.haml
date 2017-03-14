@@ -1,6 +1,6 @@
 .col-md-9
   %h1 #babblechat
-  .panel.panel-default#chat-box
+  .panel.panel-default#chat-box{ data: { dialect_pick: ''}}
     .panel-body
       = render @messages
   .panel.panel-default#message-box
@@ -8,7 +8,13 @@
       =simple_form_for @message, url: '#' do |f|
         =f.error_notification errors: true
         =f.input :content, as: :string, label: false, placeholder: 'Type your message here...'
-        =f.button :submit, 'Speak', class: 'btn-primary'
+        .pull-left
+          =f.button :submit, 'Speak', class: 'btn-primary'
+        .pull-right
+          .pull-left{style: 'padding-top: 7px'}
+            Pick your dialect &nbsp;
+          .pull-right
+            =f.input :dialect, label: false, collection: ['binary', 'valley', 'yoda'], selected: 'valley'
 
 .col-md-3
   %h1

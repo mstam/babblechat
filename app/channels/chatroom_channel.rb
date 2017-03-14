@@ -8,6 +8,8 @@ class ChatroomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    current_user.messages.create!(content: data['message'])
+    translation_request = HTTParty.get("http://www.degraeve.com/cgi-bin/babel.cgi?d=#{data['dialect_pick']}&url=&w=#{data['message']}")
+    translated_message = Nokogiri::HTML(translation_request).css('blockquote').text.gsub("/n", "")
+    current_user.messages.create!(content: translated_message, dialect: data['dialect_pick'])
   end
 end
