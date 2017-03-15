@@ -17,13 +17,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: ec2-54-217-222-254.eu-west-1.compute.amazonaws.com
+  database: d76gtf9qr6d4fv
+  username: fdlmjlbwdqgpcj
+  password: 18b28e5bae4c83bd7c272c02e674a4d8c82b8ca766e9ce877196a67953a17a9a
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: babblechat_devs
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +61,6 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: babblechat_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +83,3 @@ test:
 #
 production:
   <<: *default
-  database: babblechat_live
-  username: babblechat
-  password: <%= ENV['BABBLECHAT_DATABASE_PASSWORD'] %>
